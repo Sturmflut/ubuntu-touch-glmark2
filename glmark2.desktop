@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=glmark2
+Comment=The glmark2 benchmark
+Exec=glmark2 --fullscreen --run-forever --annotate
+Icon=glmark2.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+X-Ubuntu-Supported-Orientations=portrait

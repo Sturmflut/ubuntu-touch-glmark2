@@ -1,0 +1,15 @@
+{
+    "architecture": "armhf",
+    "description": "The glmark2 benchmark",
+    "framework": "ubuntu-sdk-15.04",
+    "hooks": {
+        "glmark2": {
+            "apparmor": "glmark2.apparmor",
+            "desktop": "glmark2.desktop"
+        }
+    },
+    "maintainer": "Simon Raffeiner <sturmflut@lieberbiber.de>",
+    "name": "glmark2.sturmflut",
+    "title": "glmark2",
+    "version": "0.4.0"
+}
