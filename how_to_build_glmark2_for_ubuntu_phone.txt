@@ -1,22 +1,23 @@
 Instructions for cross-building glmark2:
 
 
-1) Install the dependencies in your chroot:
+1) Make sure you have the stable phone overlay PPA activated in your chroot. If you created a new chroot after wily was released (October 2015), it has already been activated. If you are using an "old" chroot, please activate https://launchpad.net/~ci-train-ppa-service/+archive/ubuntu/stable-phone-overlay and upgrade the chroot.
+
+2) Install the dependencies in your chroot:
 	$ click chroot -a armhf -f ubuntu-sdk-15.04 maint
 	# apt-get install libjpeg-dev libpng-dev
 
 
-2) Check out revision 499aa81a68fb4c8aac1c80f0d6a4cce05941c4cc (more recent ones need libmirclient 0.13):
+3) Check out the current revision of glmark2
 	$ git clone https://github.com/glmark2/glmark2.git
 	$ cd glmark2
-	$ git checkout 499aa81a68fb4c8aac1c80f0d6a4cce05941c4cc
 
 
-3) Build manually:
-	$ click chroot -a armhf -f ubuntu-sdk-15.04 run arm-linux-gnueabihf-g++ -o glmark2 -DGLMARK_VERSION=\"2014.03\" -DGLMARK2_USE_GLESv2 -DGLMARK2_USE_MIR -DGLMARK2_USE_EGL -DGLMARK_DATA_PATH=\"data\" -Isrc/ -Isrc/libmatrix/ -I/usr/include/mirclient/ -I/usr/include/mircommon/ -Isrc/scene-ideas/ -Isrc/scene-terrain/ src/gl-headers.cpp src/options.cpp src/gl-state-egl.cpp src/canvas-generic.cpp src/native-state-mir.cpp src/main-loop.cpp src/main.cpp src/scene.cpp src/mesh.cpp src/image-reader.cpp src/texture.cpp src/benchmark.cpp src/gl-visual-config.cpp src/text-renderer.cpp src/model.cpp src/benchmark-collection.cpp src/scene-*.cpp src/scene-ideas/*.cc src/scene-terrain/*.cpp src/libmatrix/*.cc -lEGL -lGLESv2 -lmirclient -lmircommon -lpng -ljpeg
+3) Build manually (this will take a while):
+	$ click chroot -a armhf -f ubuntu-sdk-15.04 run arm-linux-gnueabihf-g++ -o glmark2 -DGLMARK_VERSION=\"2014.03\" -DGLMARK2_USE_GLESv2 -DGLMARK2_USE_MIR -DGLMARK2_USE_EGL -DGLMARK_DATA_PATH=\"data\" -Isrc/ -Isrc/libmatrix/ -I/usr/include/mirclient/ -I/usr/include/mircommon/ -Isrc/scene-ideas/ -Isrc/scene-terrain/ src/gl-headers.cpp src/options.cpp src/gl-state-egl.cpp src/canvas-generic.cpp src/native-state-mir.cpp src/main-loop.cpp src/main.cpp src/scene.cpp src/mesh.cpp src/image-reader.cpp src/texture.cpp src/benchmark.cpp src/gl-visual-config.cpp src/text-renderer.cpp src/model.cpp src/benchmark-collection.cpp src/scene-*.cpp src/scene-ideas/*.cc src/scene-terrain/*.cpp src/libmatrix/*.cc -lEGL -lGLESv2 -lmirclient -lmircommon -lpng -ljpeg -O3 -funroll-loops
 
 
-4) Copy the glmark2 executable and the data/ folder into this template
+4) Copy the glmark2 executable and the data/ folder to this template
 
 
 5) Run "click build"
