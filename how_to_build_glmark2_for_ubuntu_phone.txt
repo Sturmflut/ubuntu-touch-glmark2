@@ -5,7 +5,7 @@ Instructions for cross-building glmark2:
 
 2) Install the dependencies in your chroot:
 	$ click chroot -a armhf -f ubuntu-sdk-15.04 maint
-	# apt-get install libjpeg-dev libpng-dev
+	# apt-get install libjpeg-dev:armhf libpng-dev:armhf
 
 
 3) Check out the current revision of glmark2
